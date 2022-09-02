@@ -29,7 +29,7 @@
                     <br>Description: {{$movie->description}}
                 </h5>
     
-                <a href="#" class="btn btn-primary">Book Now</a>
+                <a href="{{route()}}" class="btn btn-primary">Book Now</a>
             </div>
         </div>
     <br>
