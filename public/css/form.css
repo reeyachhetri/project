@@ -1,0 +1,41 @@
+*{
+    margin: auto;
+    padding: auto;
+    
+}
+.header{
+    background-color: rgb(167, 41, 41);
+    color: rgb(199, 221, 221);
+    margin: 40px 40px 0px 40px;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    font-family:cursive;
+}
+.header h3{
+    font-size: 50px;
+    font-family:cursive;
+}
+.header .cont{
+    text-align: left;
+    margin: 20px;
+}
+button{
+    position: relative;
+    border: none;
+    transition: .4s ease-in;
+    z-index: 1;
+    font-size: large;
+    padding: 10px 50px 10px 50px;
+    font-family:cursive;
+}
+button::before,
+button::after{
+    position: absolute;
+    content: "";
+    z-index: -1;
+}
+.btn:hover{
+    background: cyan;
+    box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 200px, cyan;
+}
