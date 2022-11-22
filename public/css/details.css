@@ -1,0 +1,30 @@
+h1 {
+    color: rgb(199, 221, 221);
+    text-align: center;
+}
+
+h3 {
+    color: rgb(199, 221, 221);
+    text-align: center;
+}
+
+h2 {
+    color: rgb(199, 221, 221);
+    text-align: center;
+}
+
+h5 {
+    color: rgb(199, 221, 221);
+    text-align: center; 
+}
+
+h4 {
+    color: rgb(199, 221, 221);
+    text-align: center; 
+}
+
+body {
+        margin: 0;
+        padding: 0;
+        background-color: #5A3034;
+  }

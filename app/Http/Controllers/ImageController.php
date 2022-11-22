@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Movie;
 
-
-class FormController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $movies = Movie::latest()->get();
-        return view ('table', compact('movies'));
+        return view ('image');
     }
 
     /**
@@ -26,8 +23,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        return view('form');
-        return view('movie');
+        //
     }
 
     /**
@@ -38,18 +34,15 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        Movie::create([
-            'movie_name' => $request->movie_name,
-            'released_date' => $request->date,
-            'director' => $request->director,
-            'cast' => $request->cast,
-            'rating' => $request->review,
-            'description' => $request->description,
-
+        $request->validate([
+            'image' =>'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
-        return redirect()->route('sub');
-        }
-    
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        return back()
+            ->with('success','Image uploaded Successfully!')
+            ->with('image', $imageName);
+    }
 
     /**
      * Display the specified resource.
@@ -59,8 +52,7 @@ class FormController extends Controller
      */
     public function show($id)
     {
-        $movie = Movie::find($id);
-        return view ('detail',compact('movie'));
+        //
     }
 
     /**
@@ -71,8 +63,7 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        $movie = Movie::find($id);
-        return view('edit', compact('movie'));
+        //
     }
 
     /**
@@ -84,16 +75,7 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $movie = Movie::find($id);
-        $movie->update([
-            'movie_name' => $request->movie_name,
-            'released_date' => $request->date,
-            'director' => $request->director,
-            'cast' => $request->cast,
-            'rating' => $request->review,
-            'description' => $request->description,
-        ]);
-        return redirect()->route('index');
+        //
     }
 
     /**
@@ -104,8 +86,6 @@ class FormController extends Controller
      */
     public function destroy($id)
     {
-        $movie = Movie::find($id);
-        $movie->delete();
-        return redirect()->route('index');
+        //
     }
 }

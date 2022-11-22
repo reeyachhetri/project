@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="{{asset('css/card.css')}}">
 </head>
 <body>
-    <table border="1" cellspacing="0" cellpadding="20px">
+    
         <div class="border">
-            <h2>Movie Details</h2><br>
+            <h2>Movie Details</h2>
+            <h4><a href="{{route('user.form')}}" class="user">User Create</a></h4>
+            <br>
         </div>
         
         <div class="container">
@@ -28,8 +30,15 @@
                     <br>Rating: {{$movie->rating}}
                     <br>Description: {{$movie->description}}
                 </h5>
-    
-                <a href="{{route()}}" class="btn btn-primary">Book Now</a>
+                <a href="{{route('book', $movie->id)}}" class="btn btn-primary edit">Book Now</a>
+                
+               
+                <a href="{{route('show', $movie->id)}}" class="btn btn-primary edit">Details</a>
+                <a href="{{route('edit', $movie->id)}}" class="btn btn-primary edit">Edit</a> 
+                <a href="{{route('delete', $movie->id)}}" class="btn btn-primary edit">Delete</a>
+                <a href="{{route('image', $movie->id)}}" class="btn btn-primary edit">Upload</a>
+                
+                
             </div>
         </div>
     <br>

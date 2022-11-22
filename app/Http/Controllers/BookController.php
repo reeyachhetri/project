@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Booking;
 use App\Models\Movie;
+use App\Models\User;
 
-
-class FormController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $movies = Movie::latest()->get();
-        return view ('table', compact('movies'));
+        
     }
 
     /**
@@ -26,8 +26,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        return view('form');
-        return view('movie');
+        //
     }
 
     /**
@@ -38,18 +37,14 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        Movie::create([
-            'movie_name' => $request->movie_name,
-            'released_date' => $request->date,
-            'director' => $request->director,
-            'cast' => $request->cast,
-            'rating' => $request->review,
-            'description' => $request->description,
-
+        $user = User::where('name', $request->name)->first();
+        Booking::create([
+            'name'=> $request->name,
+            'user_id'=> $user->id,
+            'movie_id'=> $request->movie_id,
         ]);
-        return redirect()->route('sub');
-        }
-    
+        return redirect()->route('index');
+    }
 
     /**
      * Display the specified resource.
@@ -60,7 +55,7 @@ class FormController extends Controller
     public function show($id)
     {
         $movie = Movie::find($id);
-        return view ('detail',compact('movie'));
+        return view('book',compact('movie'));
     }
 
     /**
@@ -71,8 +66,7 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        $movie = Movie::find($id);
-        return view('edit', compact('movie'));
+        //
     }
 
     /**
@@ -84,16 +78,7 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $movie = Movie::find($id);
-        $movie->update([
-            'movie_name' => $request->movie_name,
-            'released_date' => $request->date,
-            'director' => $request->director,
-            'cast' => $request->cast,
-            'rating' => $request->review,
-            'description' => $request->description,
-        ]);
-        return redirect()->route('index');
+        //
     }
 
     /**
@@ -104,8 +89,6 @@ class FormController extends Controller
      */
     public function destroy($id)
     {
-        $movie = Movie::find($id);
-        $movie->delete();
-        return redirect()->route('index');
+        //
     }
 }
